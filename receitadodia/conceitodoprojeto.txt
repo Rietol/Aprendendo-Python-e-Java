@@ -1,0 +1,23 @@
+Projeto: O que cozinhar hoje?(Sem ideia de nome na real)
+
+Linguagem: Python ou Java (Utilização de banco de dados MySQL)
+
+Motivo: Primeiro projeto, treinar noções de organização, habilidades de progamação e utilização do Git
+/Github
+
+Objetivo do Programa: Criar um programa que olha o estoque de alimentos em casa e retorna quais receitas
+podem ser feitas com eles. Se sobrar tempo, adicionar mais opções de filtro na hora da seleção, ex:
+	-Dificuldade da receita
+	-Tempo estimado
+	-Tamanho da porção
+	-Evitar a recorrência de certas receitas
+
+Desafios: 
+	*A criação do banco de dados contendo as receitas e os igredientes de acordo
+	*Trabalhar com UI já que não trabalhei com isso antes.
+
+Escopo:Pequeno, já que este é o meu primeiro projeto, porém não consigo medir quanto tempo irei tomar.
+
+Python:Fácil, boa integração com banco de dados, conheço já algumas bibliotecas.
+
+Java:Tenho um conhecimento de POO bem maior, pode ser usado fácilmente para criar app android(Android Studio)
