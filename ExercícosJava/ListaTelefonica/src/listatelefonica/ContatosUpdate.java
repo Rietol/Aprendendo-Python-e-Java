@@ -77,5 +77,25 @@ public class ContatosUpdate {
         return contatos;
     }
     
-    
+    public Dados getContatoById(int id) {
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Dados contato = new Dados();
+        try {
+            conn = Conexao.getConexao();
+            pstm = conn.prepareStatement(LISTBYID);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                contato.setId(rs.getLong("id"));
+                contato.setNome(rs.getString("nome"));
+                contato.setNumero(rs.getInt("numero"));
+            }
+            Conexao.fecharConexao(conn, pstm, rs);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar contatos" + e.getMessage());
+        }
+        return contato;
+    }    
 }
