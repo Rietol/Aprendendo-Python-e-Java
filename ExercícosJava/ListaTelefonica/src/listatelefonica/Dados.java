@@ -1,5 +1,5 @@
 package listatelefonica;
-public class Lista {
+public class Dados {
     private long id;
     private String nome;
     private int numero;

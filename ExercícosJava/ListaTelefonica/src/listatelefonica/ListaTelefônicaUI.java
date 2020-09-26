@@ -33,12 +33,12 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
         painelAdicionar = new javax.swing.JPanel();
         textoAdicionar = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaAdd = new javax.swing.JTable();
         painelPesquisar = new javax.swing.JPanel();
         textoPesquisar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabelaAdd = new javax.swing.JTable();
+        tabelaPes = new javax.swing.JTable(model);
         pesquisarBotao = new javax.swing.JButton();
         addBotao = new javax.swing.JButton();
 
@@ -48,18 +48,9 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
 
         textoAdicionar.setText("Adicionando um contato");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        tabelaAdd.setModel(model
+        );
+        jScrollPane2.setViewportView(tabelaAdd);
 
         javax.swing.GroupLayout painelAdicionarLayout = new javax.swing.GroupLayout(painelAdicionar);
         painelAdicionar.setLayout(painelAdicionarLayout);
@@ -78,8 +69,7 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
             .addGroup(painelAdicionarLayout.createSequentialGroup()
                 .addComponent(textoAdicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
         );
 
         mainPanel.add(painelAdicionar, "adicionar");
@@ -88,15 +78,8 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
 
         jButton1.setText("Modificar");
 
-        tabelaAdd.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(tabelaAdd);
+        tabelaPes.setModel(model);
+        jScrollPane3.setViewportView(tabelaPes);
 
         javax.swing.GroupLayout painelPesquisarLayout = new javax.swing.GroupLayout(painelPesquisar);
         painelPesquisar.setLayout(painelPesquisarLayout);
@@ -118,9 +101,10 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
                 .addComponent(textoPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(painelPesquisarLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         mainPanel.add(painelPesquisar, "pesquisar");
@@ -210,7 +194,6 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        Conexao.inicializar();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -224,12 +207,13 @@ public class ListaTelefônicaUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel painelAdicionar;
     private javax.swing.JPanel painelPesquisar;
     private javax.swing.JButton pesquisarBotao;
     private javax.swing.JTable tabelaAdd;
+    ListaTableModel model = new ListaTableModel();
+    private javax.swing.JTable tabelaPes;
     private javax.swing.JLabel textoAdicionar;
     private javax.swing.JLabel textoPesquisar;
     // End of variables declaration//GEN-END:variables
