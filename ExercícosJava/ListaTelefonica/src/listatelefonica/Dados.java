@@ -1,14 +1,14 @@
 package listatelefonica;
 public class Dados {
-    private long id;
+    private int id;
     private String nome;
-    private int numero;
+    private String numero;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -20,11 +20,11 @@ public class Dados {
         this.nome = nome;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 }

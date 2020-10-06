@@ -6,21 +6,25 @@ import javax.swing.table.AbstractTableModel;
 
 
 public class ListaTableModel extends AbstractTableModel {
- 
-    private List<Dados> lista;
-        private String[] colunas = new String []{
-            "ID", "Nome", "Numero"};
+    
+    private static final int COL_ID = 0;
+    private static final int COL_NOME = 1;
+    private static final int COL_TELEFONE = 2;
+    
+    private List<Dados> linhas;
+    private String[] colunas = new String []{
+        "ID", "Nome", "Telefone"};
         
-    public ListaTableModel(List<Dados> lista) {
-        this.lista = lista;
+    public ListaTableModel(List<Dados> linhas) {
+        this.linhas = linhas;
     }
     
-    public ListaTableModel(){
-        this.lista = new ArrayList<Dados>();
+    public ListaTableModel(){        
+        this.linhas = new ArrayList<Dados>();
     }
     
     public int getRowCount() {
-        return lista.size();
+        return linhas.size();
     }
     
     public int getColumnCount() {
@@ -33,12 +37,15 @@ public class ListaTableModel extends AbstractTableModel {
     }
     
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
+    public Class getColumnClass(int columnIndex) {
+        if (columnIndex == COL_ID) {
+            return Integer.class;
+        }
         return String.class;
     }
     
     public void setValueAt(Dados aValue, int rowIndex) {
-        Dados dados = lista.get(rowIndex);
+        Dados dados = linhas.get(rowIndex);
         
         
         dados.setId(aValue.getId());
@@ -52,14 +59,14 @@ public class ListaTableModel extends AbstractTableModel {
     
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Dados dados = lista.get(rowIndex);
+        Dados dados = linhas.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                dados.setId((long) aValue);
+                dados.setId((int) aValue);
             case 1:
                 dados.setNome(aValue.toString());
             case 2:
-                dados.setNumero((int) aValue);
+                dados.setNumero(aValue.toString());
 
             default:
                 System.err.println("Índice da coluna inválido");
@@ -68,7 +75,7 @@ public class ListaTableModel extends AbstractTableModel {
     }
     
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Dados dadosSelecionado = lista.get(rowIndex);
+        Dados dadosSelecionado = linhas.get(rowIndex);
         Object valueObject = null;
         switch(columnIndex){
             case 0: valueObject = dadosSelecionado.getId(); 
@@ -88,12 +95,12 @@ public class ListaTableModel extends AbstractTableModel {
         return false;
     }
     
-    public Dados getDados(int indiceLinha) {
-        return lista.get(indiceLinha);
+    public Dados getContato(int indiceLinha) {
+        return linhas.get(indiceLinha);
     }
     
-    public void addDados(Dados d) {
-        lista.add(d);
+    public void addContato(Dados d) {
+        linhas.add(d);
         
         int ultimoIndice = getRowCount() -1;
         
@@ -101,25 +108,30 @@ public class ListaTableModel extends AbstractTableModel {
     }
     
     
-    public void removeDados(int indiceLinha) {
-        lista.remove(indiceLinha);
+    public void removeContato(int indiceLinha) {
+        linhas.remove(indiceLinha);
         
         fireTableRowsDeleted(indiceLinha, indiceLinha);
+    }
+    
+    public void updateContato(int indiceLinha, Dados marca) {
+        linhas.set(indiceLinha, marca);
+        fireTableRowsUpdated(indiceLinha, indiceLinha);
     }
     
     public void addListaDePessoas(List<Dados> novasPessoas) {
         
         int tamanhoAntigo = getRowCount();
-        lista.addAll(novasPessoas);
+        linhas.addAll(novasPessoas);
         fireTableRowsInserted(tamanhoAntigo, getRowCount() - 1);
     }
     
     public void limpar() {
-        lista.clear();
+        linhas.clear();
         fireTableDataChanged();
     }
     
     public boolean isEmpty() {
-        return lista.isEmpty();
+        return linhas.isEmpty();
     }
 }
